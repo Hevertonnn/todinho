@@ -1,0 +1,674 @@
+```html id="8vkp4m"
+# Código Atualizado — Quilombo Retiro Podcast
+
+Substitua seu arquivo `index.html` por este código.
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quilombo Retiro Podcast</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:
+linear-gradient(
+rgba(11,18,36,0.92),
+rgba(11,18,36,0.95)
+),
+url('img/fundo.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+}
+
+.esconder{
+display:none !important;
+}
+
+.input-estilo{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.05);
+color:white;
+outline:none;
+margin-top:12px;
+}
+
+.input-estilo:focus{
+border-color:#FF7A00;
+}
+
+.botao{
+background:linear-gradient(135deg,#FF7A00,#FF5500);
+padding:14px 28px;
+border-radius:16px;
+font-weight:bold;
+transition:.3s;
+display:inline-block;
+border:none;
+color:white;
+cursor:pointer;
+}
+
+.botao:hover{
+transform:scale(1.05);
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:28px;
+overflow:hidden;
+transition:.3s;
+backdrop-filter:blur(10px);
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+img{
+max-width:100%;
+display:block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-orange-500/20">
+
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+<img
+src="img/logo1.jpeg"
+alt="Quilombo Retiro"
+class="h-16 md:h-20 object-contain"
+/>
+
+<nav class="hidden md:flex gap-8 font-semibold">
+<a href="#inicio" class="hover:text-orange-400">Início</a>
+<a href="#videos" class="hover:text-orange-400">Vídeos</a>
+<a href="#produtos" class="hover:text-orange-400">Produtos</a>
+<a href="#sobre" class="hover:text-orange-400">Sobre</a>
+<a href="#memoria" class="hover:text-orange-400">Memória</a>
+<a href="#admin" id="linkAdmin" class="hover:text-orange-400 esconder">Admin 🔒</a>
+</nav>
+
+</div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="min-h-screen flex items-center pt-32">
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<div>
+
+<span class="bg-orange-500/20 text-orange-400 px-5 py-2 rounded-full font-bold">
+🔥 NOVO EPISÓDIO TODA SEMANA
+</span>
+
+<h1 class="text-6xl md:text-7xl font-black leading-tight mt-8">
+Podcast<br>
+<span class="text-orange-500">Quilombo Retiro</span>
+</h1>
+
+<p class="text-gray-300 text-lg mt-8 leading-relaxed">
+Conversas reais, convidados especiais, muito conhecimento e cultura.
+</p>
+
+<div class="flex gap-4 mt-10 flex-wrap">
+<a href="#videos" class="botao">▶ Assistir</a>
+<a href="#sobre" class="border border-orange-500 text-orange-400 px-8 py-4 rounded-2xl font-bold hover:bg-orange-500/10 transition">Sobre</a>
+</div>
+
+<div class="mt-14 max-w-sm bg-black/30 p-6 rounded-3xl backdrop-blur-xl">
+
+<h3 class="font-bold text-xl mb-4">🔒 Área do Dono</h3>
+
+<input
+type="password"
+id="senhaAcesso"
+placeholder="Digite a senha"
+class="input-estilo"
+/>
+
+<button onclick="verificarSenha()" class="botao w-full mt-4">
+Entrar
+</button>
+
+<p id="erroSenha" class="text-red-400 mt-3 esconder">
+❌ Senha incorreta
+</p>
+
+</div>
+</div>
+
+<div class="flex justify-center">
+<img
+src="img/quilombo.jpeg"
+class="rounded-[40px] shadow-2xl border-4 border-orange-500/20"
+/>
+</div>
+
+</div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos" class="py-28">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-20">
+<h2 class="text-5xl font-black">🎥 Últimos Vídeos</h2>
+<p class="text-gray-400 mt-4">
+Veja os episódios mais recentes do podcast.
+</p>
+</div>
+
+<div id="listaVideos" class="grid md:grid-cols-3 gap-8">
+</div>
+
+</div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos" class="py-28 bg-black/20">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-20">
+<h2 class="text-5xl font-black">🛒 Produtos Oficiais</h2>
+</div>
+
+<div id="listaProdutos" class="grid md:grid-cols-3 gap-8">
+
+<div class="card">
+<img src="img/produto1.jpg">
+<div class="p-6 text-center">
+<h3 class="text-2xl font-bold">Camiseta Oficial</h3>
+<p class="text-orange-500 text-3xl font-black mt-4">R$ 49,90</p>
+<button onclick="comprarProduto('Camiseta Oficial', '49,90')" class="botao mt-6">
+Comprar
+</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="py-28">
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<div>
+<img
+src="img/podcas.jpeg"
+class="rounded-[35px] shadow-2xl border border-orange-500/20"
+/>
+</div>
+
+<div>
+<h2 class="text-5xl font-black">🎙️ Sobre o Podcast</h2>
+
+<p class="text-gray-300 text-lg leading-relaxed mt-8">
+O Quilombo Retiro Podcast foi criado para trazer conversas reais, cultura e convidados especiais.
+</p>
+
+<div class="flex gap-6 mt-10 flex-wrap">
+
+<div class="bg-black/30 p-6 rounded-3xl text-center">
+<h3 class="text-4xl font-black text-orange-500">+1M</h3>
+<p>Visualizações</p>
+</div>
+
+<div class="bg-black/30 p-6 rounded-3xl text-center">
+<h3 class="text-4xl font-black text-orange-500">+50</h3>
+<p>Episódios</p>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- APRESENTADOR -->
+
+<section id="apresentador" class="py-28">
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<!-- FOTO -->
+
+<div class="flex justify-center">
+
+<img
+src="img/apresentador.jpeg"
+class="rounded-[40px] shadow-2xl border-4 border-orange-500/20 w-full max-w-md object-cover"
+/>
+
+</div>
+
+<!-- TEXTO -->
+
+<div>
+
+<span class="bg-orange-500/20 text-orange-400 px-5 py-2 rounded-full font-bold">
+🎙️ APRESENTADOR
+</span>
+
+<h2 class="text-5xl font-black mt-8">
+Todinho
+</h2>
+
+<p class="text-gray-300 text-lg leading-relaxed mt-8">
+
+Todinho é o criador e apresentador do
+Quilombo Retiro Podcast, trazendo conversas reais,
+histórias inspiradoras e convidados especiais.
+
+</p>
+
+<p class="text-gray-300 text-lg leading-relaxed mt-6">
+
+Com carisma e autenticidade, ele transforma cada episódio
+em uma experiência única para o público.
+
+</p>
+
+<div class="flex gap-6 mt-10 flex-wrap">
+
+<div class="bg-black/30 p-6 rounded-3xl text-center">
+
+<h3 class="text-4xl font-black text-orange-500">
++1M
+</h3>
+
+<p>
+Views
+</p>
+
+</div>
+
+<div class="bg-black/30 p-6 rounded-3xl text-center">
+
+<h3 class="text-4xl font-black text-orange-500">
++50
+</h3>
+
+<p>
+Episódios
+</p>
+
+</div>
+
+<div class="bg-black/30 p-6 rounded-3xl text-center">
+
+<h3 class="text-4xl font-black text-orange-500">
++100k
+</h3>
+
+<p>
+Seguidores
+</p>
+
+</div>
+
+</div>
+
+<!-- REDES -->
+
+<div class="flex gap-6 mt-10">
+
+<a href="https://www.instagram.com/quilomboretiro?igsh=MXZtMjF6eXByMmw5cw=="
+class="text-4xl hover:text-orange-500 transition">
+<i class="fa fa-instagram"></i>
+</a>
+
+<a href="https://youtube.com/@quilomboretiro?si=sCnSwYeNTbWZy1Og"
+class="text-4xl hover:text-orange-500 transition">
+<i class="fa fa-youtube-play"></i>
+</a>
+
+<a href="#"
+class="text-4xl hover:text-orange-500 transition">
+<i class="fa fa-tiktok"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MEMORIAS -->
+
+<section id="memoria" class="py-28 bg-black/20">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-20">
+
+<h2 class="text-5xl font-black">
+📸 Ponto de Memoria
+</h2>
+
+<p class="text-gray-400 mt-4">
+Momentos marcantes do Quilombo Retiro Podcast.
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- FOTO 1 -->
+
+<div class="card overflow-hidden">
+
+<img
+src="img/foto1.jpeg"
+class="w-full h-[350px] object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-2xl font-bold text-orange-500">
+🎙️ Primeiro Episódio
+</h3>
+
+<p class="text-gray-300 mt-4">
+O começo de tudo no podcast.
+</p>
+
+</div>
+
+</div>
+
+<!-- FOTO 2 -->
+
+<div class="card overflow-hidden">
+
+<img
+src="img/foto2.jpeg"
+class="w-full h-[350px] object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-2xl font-bold text-orange-500">
+🔥 Melhor Corte
+</h3>
+
+<p class="text-gray-300 mt-4">
+O episódio que viralizou.
+</p>
+
+</div>
+
+</div>
+
+<!-- FOTO 3 -->
+
+<div class="card overflow-hidden">
+
+<img
+src="img/foto3.jpeg"
+class="w-full h-[350px] object-cover"
+/>
+
+<div class="p-6">
+
+<h3 class="text-2xl font-bold text-orange-500">
+🚀 Bastidores
+</h3>
+
+<p class="text-gray-300 mt-4">
+Momentos especiais das gravações.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="py-28 esconder">
+
+<div class="max-w-5xl mx-auto px-6">
+
+<div class="text-center mb-16">
+<h2 class="text-5xl font-black text-orange-500">⚙️ Área do Criador</h2>
+</div>
+
+<div class="bg-black/30 p-10 rounded-[35px] backdrop-blur-xl">
+
+<h3 class="text-3xl font-bold mb-8">📺 Adicionar Vídeo</h3>
+
+<input type="text" id="tituloVideo" placeholder="Título do vídeo" class="input-estilo"/>
+
+<input type="url" id="linkVideo" placeholder="https://youtube.com/..." class="input-estilo"/>
+
+<textarea id="descricaoVideo" placeholder="Descrição" rows="5" class="input-estilo"></textarea>
+
+<button onclick="adicionarVideo()" class="botao w-full mt-6">
+Salvar Vídeo
+</button>
+
+<hr class="my-12 border-white/10">
+
+<h3 class="text-3xl font-bold mb-8">🛒 Adicionar Produto</h3>
+
+<input type="text" id="nomeProduto" placeholder="Nome do produto" class="input-estilo"/>
+
+<input type="text" id="precoProduto" placeholder="Preço" class="input-estilo"/>
+
+<input type="url" id="imagemProduto" placeholder="Imagem do produto" class="input-estilo"/>
+
+<button onclick="adicionarProduto()" class="botao w-full mt-6">
+Salvar Produto
+</button>
+
+<button onclick="sairModoAdmin()" class="w-full mt-8 bg-red-500/20 text-red-400 py-4 rounded-2xl font-bold">
+🚪 Sair
+</button>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-12 border-t border-white/10 text-center bg-black/30">
+<p class="text-gray-400">
+© 2026 Quilombo Retiro Podcast
+</p>
+</footer>
+
+<script>
+
+function verificarSenha(){
+
+const senha = document.getElementById("senhaAcesso").value;
+const admin = document.getElementById("admin");
+const erro = document.getElementById("erroSenha");
+const linkAdmin = document.getElementById("linkAdmin");
+
+if(senha === "quilombo123"){
+
+admin.classList.remove("esconder");
+linkAdmin.classList.remove("esconder");
+erro.classList.add("esconder");
+
+admin.scrollIntoView({
+behavior:"smooth"
+});
+
+}else{
+erro.classList.remove("esconder");
+}
+}
+
+function sairModoAdmin(){
+
+document.getElementById("admin").classList.add("esconder");
+document.getElementById("linkAdmin").classList.add("esconder");
+
+}
+
+function pegarThumbnailYoutube(url){
+
+let videoId = "";
+
+if(url.includes("youtube.com/watch?v=")){
+videoId = url.split("v=")[1].split("&")[0];
+}
+
+else if(url.includes("youtu.be/")){
+videoId = url.split("youtu.be/")[1];
+}
+
+return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+}
+
+function adicionarVideo(){
+
+const titulo = document.getElementById("tituloVideo").value;
+const link = document.getElementById("linkVideo").value;
+const descricao = document.getElementById("descricaoVideo").value;
+
+const capa = pegarThumbnailYoutube(link);
+
+const areaVideos = document.getElementById("listaVideos");
+
+areaVideos.innerHTML += `
+
+<div class="card">
+
+<img src="${capa}">
+
+<div class="p-6">
+
+<h3 class="text-2xl font-bold">
+${titulo}
+</h3>
+
+<p class="text-gray-400 mt-4">
+${descricao}
+</p>
+
+<a href="${link}" target="_blank" class="botao mt-6">
+▶ Assistir
+</a>
+
+</div>
+</div>
+
+`;
+
+}
+
+function adicionarProduto(){
+
+const nome = document.getElementById("nomeProduto").value;
+const preco = document.getElementById("precoProduto").value;
+const imagem = document.getElementById("imagemProduto").value;
+
+const areaProdutos = document.getElementById("listaProdutos");
+
+areaProdutos.innerHTML += `
+
+<div class="card">
+<img src="${imagem}">
+<div class="p-6 text-center">
+<h3 class="text-2xl font-bold">${nome}</h3>
+<p class="text-orange-500 text-3xl font-black mt-4">
+R$ ${preco}
+</p>
+<button onclick="comprarProduto('${nome}', '${preco}')" class="botao mt-6">
+Comprar
+</button>
+</div>
+</div>
+
+`;
+
+}
+
+function comprarProduto(nome, preco){
+
+const numero = '27998897354';
+
+const mensagem = `Olá! Quero comprar o produto: ${nome} - R$ ${preco}`;
+
+window.open(
+`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
+'_blank'
+);
+
+}
+
+</script>
+
+</body>
+</html>
+```
+
+## Pasta das imagens
+
+Crie uma pasta chamada:
+
+```txt
+img
+```
+
+E coloque:
+
+```txt
+logo1.png.jpeg
+fundo.jpg
+sobre.jpg
+produto1.jpg
+WhatsApp Image 2026-05-10 at 13.47.05 (2).jpeg
+```
+
+Troque o número do WhatsApp nesta linha:
+
+```js
+const numero = '5527999999999';
+```
+
+pelo seu número.
